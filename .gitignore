@@ -1,0 +1,5 @@
+.env   
+.venv
+requirements.txt
+database/
+__pycache__/ 
