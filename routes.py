@@ -10,10 +10,12 @@ def get_homepage():
 
 @book_blueprint.route('/all', methods=['GET'])
 def get_all_books():
-     books = Book.query.all()
-     result = jsonify([book.serialize() for book in books])
-     response = {"Books": result}
-     return jsonify(response)
+    try:
+        books = Book.query.all()
+        response = {"Books": [book.serialize() for book in books]}
+    except Exception as e:
+        response = {"Message": "Failed to retrieve books"} 
+    return jsonify(response)
 
 @book_blueprint.route('/create', methods=['POST'])
 def create_book():
